@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Kanban Report</title>
+</head>
+<body>
+<h1>Kanban Report</h1>
+<button onclick="loadAzure()" id="getData">
+    Get Data
+</button>
+<form>
+    <p>Please input ADOs separated by comma. Ensure no spaces</p>
+    <input type="text" id="adoNumbers">
+    <button type="button" id="generate" onclick="">
+        Generate
+    </button>
+</form>
+<div id="output">
+    <table>
+        <tr>
+            <td id="estimatedHours"></td>
+            <td id="createdDate" class="thisGap"></td>
+            <td id="activatedDate" class="thisGap"></td>
+        </tr>
+    </table>
+</div>
+<script>
+    $("#generate").click(function() {
+    //$( document ).ready(function() {
+        $.ajax({
+            url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=51603&api-version=6.0',
+            dataType: 'json',
+            headers: {
+                'Authorization': 'Basic ' + btoa("" + ":" + "xu3ectrfjj7noibyk35a7epsueo77mzs6kjnhrpaqf3htw35ndeq")
+            }
+        }).done(function(results) {
+            console.log(results);
+
+            document.getElementById('estimatedHours').innerHTML = (results.value[0].fields["Custom.EstimatedEffortHours"]);
+            //document.getElementById('createdDate').innerHTML = (results.value[0].fields["System.CreatedDate"]);
+            //document.getElementById('activatedDate').innerHTML = (results.value[0].fields["Custom.ActivatedDateV2"]);
+
+            //console.log(results.value[0].fields["Custom.EstimatedEffortHours"]);
+            console.log(results.fields["System.CreatedDate"]);
+            console.log(results.fields["Custom.ActivatedDateV2"]);
+        });
+    });
+</script>
+</body>
+</html>
