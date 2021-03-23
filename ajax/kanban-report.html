@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Kanban Report</title>
+    <link rel="stylesheet" href="kanban-report.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Kanban Report</h1>
+<div class="container-bg">
+    <div class="container" id="dashboard-container">
+<div class="dashboard-cards">
+    <h1>Kanban Report</h1>
 <button onclick="loadAzure()" id="getData">
     Get Data
 </button>
@@ -20,16 +25,19 @@
         Generate
     </button>
 </form>
-<div id="output">
-    <p id="showData"></p>
+</div>
+<div id="tableOutput">
+    <table></table>
+</div>
+</div>
 </div>
 <script>
-    //$("#generate").click(function() {
-    $( document ).ready(function() {
+    $("#generate").click(function() {
+    //$( document ).ready(function() {
         let adoNumberInput = document.getElementById("adoNumbers").value;
         $.ajax({
-            //url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=' + adoNumberInput + '&api-version=6.0',
-            url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=51603,51604&api-version=6.0',
+            url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=' + adoNumberInput + '&api-version=6.0',
+            //url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=51603,51604&api-version=6.0',
             dataType: 'json',
             headers: {
                 'Authorization': 'Basic ' + btoa("" + ":" + "xu3ectrfjj7noibyk35a7epsueo77mzs6kjnhrpaqf3htw35ndeq")
@@ -37,6 +45,7 @@
         }).done(function(results) {
             console.log(results);
             //console.log(results.value[0].fields["Custom.ActivatedDateV2"]);
+
 
             for (let i = 0; i < results.value.length; i++) {
                 let item = results.value[i];
@@ -46,8 +55,13 @@
                     let newEstimatedEffortHours = item.fields["Custom.EstimatedEffortHours"];
                     console.log(item.fields["Custom.ActualEffortHours"]);
                     let newActualEffortHours = item.fields["Custom.ActualEffortHours"];
+                    
                     let differenceInEffort = newActualEffortHours - newEstimatedEffortHours;
-                    console.log(differenceInEffort);
+                    if (differenceInEffort > 0){
+                        console.log('Exceeded by', differenceInEffort, 'hours');}
+                    else {
+                        console.log('Finished early by', differenceInEffort, 'hours');
+                    }
 
                     let resultCreatedDate = item.fields["System.CreatedDate"];
                     let newCreatedDate = new Date(resultCreatedDate);
@@ -58,35 +72,16 @@
                     console.log(newActivatedDate);
 
                     let timeGap = newActivatedDate - newCreatedDate;
-                    console.log(timeGap);
-                    
                     if (timeGap > 60e3) console.log(
-                        Math.floor(timeGap / 60e3), 'minutes ago'
+                        Math.floor(timeGap / 60e3), 'minutes of gap'
                     );
                     else console.log(
-                        Math.floor(timeGap/ 1e3), 'seconds ago'
+                        Math.floor(timeGap/ 1e3), 'seconds of gap'
                     );
                     
-                    console.log(item.fields["Custom.ImpedimentsorBlockers"]);
+                    $( "#tableOutput" ).html( "<span>This is the ID: " + newActivatedDate + "</span>" );
+                    
 
-
-                    //Solve Here https://www.encodedna.com/javascript/populate-json-data-to-html-table-using-javascript.htm
-                    let col = [];
-                    const table = document.createElement("table");
-
-                    let tr = table.insertRow(-1); 
-                    for (let i = 0; i < col.length; i++) {
-                        let th = document.createElement("th");
-                        th.innerHTML = col[i];
-                        tr.appendChild(th);
-                    }
-                    for (let i = 0; i < results.value.length; i++) {
-                        tr = table.insertRow(-1);
-                        for (let j = 0; j < col.length; j++) {
-                            let tabCell = tr.insertCell(-1);
-                            tabCell.innerHTML = myBooks[i][col[j]];
-                        }
-                    }
                     
 }                   
         });
