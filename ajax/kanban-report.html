@@ -25,9 +25,25 @@
         Generate
     </button>
 </form>
-</div>
-<div id="tableOutput">
-    <table></table>
+<table class="table table-striped">
+    <tr>
+        <th>ADO</th>
+        <th>Developer</th>
+        <th>Request Type</th>
+        <th>State</th>
+        <th>Story Points</th>
+    </tr>
+    <tbody id="tableOutput">
+
+    </tbody>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td id="sumOfStoryPoints"></td>
+    </tr>
+</table>
 </div>
 </div>
 </div>
@@ -36,6 +52,7 @@
     //$( document ).ready(function() {
         let adoNumberInput = document.getElementById("adoNumbers").value;
         $.ajax({
+            method:"GET",
             url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=' + adoNumberInput + '&api-version=6.0',
             //url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=51603,51604&api-version=6.0',
             dataType: 'json',
@@ -45,10 +62,20 @@
         }).done(function(results) {
             console.log(results);
             //console.log(results.value[0].fields["Custom.ActivatedDateV2"]);
-
+            let table = document.getElementById('tableOutput')
 
             for (let i = 0; i < results.value.length; i++) {
                 let item = results.value[i];
+                let row = `<tr>
+                                <td>${item.id}</td>
+                                <td>${item.fields["Custom.Developer"].displayName}</td>
+                                <td>${item.fields["Custom.TypeofUpdate"]}</td>
+                                <td>${item.fields["System.State"]}</td>
+                                <td>${item.fields["Microsoft.VSTS.Scheduling.StoryPoints"]}</td>
+                            </tr>`
+
+                    table.innerHTML += row;
+
                     console.log(item.id);
                     console.log(item.fields["Custom.Developer"].displayName);
                     console.log(item.fields["Custom.EstimatedEffortHours"]);
@@ -78,12 +105,7 @@
                     else console.log(
                         Math.floor(timeGap/ 1e3), 'seconds of gap'
                     );
-                    
-                    $( "#tableOutput" ).html( "<span>This is the ID: " + newActivatedDate + "</span>" );
-                    
-
-                    
-}                   
+            }   
         });
     });
 </script>

@@ -2,13 +2,13 @@ body {
     background-image: url("assets/gradient-background.png");
     height: 100%;
     background-size: cover;
-    background-repeat: no-repeat;
     font-family: 'Merriweather', serif;
 }
 
 h1{
     font-size: 2em;
 }
+
 #dashboard-container {
     background: rgba(255,255,255,0.5);
     min-height: 100%;
@@ -20,7 +20,6 @@ h1{
 
 .dashboard-cards {
     min-height: 100%;
-    width: 55%;
     background: rgba(255,255,255,0.4);
     backdrop-filter: blur(10px);
     border-radius: 15px;
