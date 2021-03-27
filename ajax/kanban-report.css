@@ -2,10 +2,10 @@ body {
     background-image: url("assets/gradient-background.png");
     height: 100%;
     background-size: cover;
-    font-family: 'Merriweather', serif;
+    font-family: 'Roboto Slab', sans-serif;
 }
 
-h1{
+h2{
     font-size: 2em;
 }
 
@@ -19,10 +19,40 @@ h1{
 }
 
 .dashboard-cards {
-    min-height: 100%;
-    background: rgba(255,255,255,0.4);
+    height: auto;
+    background: rgba(255,255,255,0.7);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.2);
     padding: 2em;
 }
+
+#dashboardPane {
+    background: rgba(255,255,255,0.6);
+    height: auto;
+    margin: 0px;
+    padding: 40px;
+    border-radius: 15px;
+    position: absolute;
+    }
+
+    @media screen and (max-width: 1000px){
+        body {
+            display: none;
+        }
+    }
+    #dashboardPane button{
+        display: block;
+        margin-bottom: 30px;
+    }
+    #dashboardPane button.active, button:hover {
+        background-color: #ffb60b;
+    }
+
+   #dashboard-container .col-sm-9 {
+       margin-bottom: 2em;
+   }
+
+   /*#gap-activation, #assigned-ados, #estimates-actuals {
+       display: none
+   }*/

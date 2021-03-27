@@ -7,24 +7,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="kanban-report.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="container-bg">
-    <div class="container" id="dashboard-container">
+<div class="container" id="dashboard-container">
+    <div class="row">
+        <div class='col-sm-3'>
+        <div id="dashboardPane">
+            <button>Assigned ADOs</button>
+            <button>Estimate vs Actual</button>
+            <button>Gap</button>
+        </div>
+    </div>
+    <div class="col-sm-9">
 <div class="dashboard-cards">
-    <h1>Kanban Report</h1>
-<button onclick="loadAzure()" id="getData">
-    Get Data
-</button>
-<form>
-    <p>Please input ADOs separated by comma. Ensure no spaces</p>
-    <input type="text" id="adoNumbers">
-    <button type="button" id="generate" onclick="">
-        Generate
-    </button>
-</form>
+    <form>
+        <p>Please input ADOs separated by comma. Ensure no spaces.</p>
+        <input type="text" id="adoNumbers">
+        <button type="button" id="generate" onclick="">
+            Generate
+        </button>
+    </form>
+</div>
+</div>
+<!-- First Table -->
+<div id="assigned-ados" class="col-sm-9 offset-3">
+    <div class="dashboard-cards">
+    <h2>Assigned ADOs</h2>
 <table class="table table-striped">
     <tr>
         <th>ADO</th>
@@ -33,84 +43,59 @@
         <th>State</th>
         <th>Story Points</th>
     </tr>
-    <tbody id="tableOutput">
+    <tbody id="tableAssignedADOs">
 
     </tbody>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td id="sumOfStoryPoints"></td>
-    </tr>
 </table>
 </div>
 </div>
+
+<!-- Second Table-->
+<div id="estimates-actuals" class="col-sm-9 offset-3">
+<div class="dashboard-cards">
+    <h2>Estimates Vs Actuals</h2>
+<table class="table table-striped">
+    <tr>
+        <th>ADO</th>
+        <th>Developer</th>
+        <th>Request Type</th>
+        <th>Estimates</th>
+        <th>Actuals</th>
+        <th>Difference</th>
+    </tr>
+    <tbody id="tableEstimateActuals">
+
+    </tbody>
+</table>
 </div>
-<script>
-    $("#generate").click(function() {
-    //$( document ).ready(function() {
-        let adoNumberInput = document.getElementById("adoNumbers").value;
-        $.ajax({
-            method:"GET",
-            url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=' + adoNumberInput + '&api-version=6.0',
-            //url: 'https://dev.azure.com/Daily-QA-List/IMBA/_apis/wit/workitems?ids=51603,51604&api-version=6.0',
-            dataType: 'json',
-            headers: {
-                'Authorization': 'Basic ' + btoa("" + ":" + "xu3ectrfjj7noibyk35a7epsueo77mzs6kjnhrpaqf3htw35ndeq")
-            }
-        }).done(function(results) {
-            console.log(results);
-            //console.log(results.value[0].fields["Custom.ActivatedDateV2"]);
-            let table = document.getElementById('tableOutput')
+</div>
 
-            for (let i = 0; i < results.value.length; i++) {
-                let item = results.value[i];
-                let row = `<tr>
-                                <td>${item.id}</td>
-                                <td>${item.fields["Custom.Developer"].displayName}</td>
-                                <td>${item.fields["Custom.TypeofUpdate"]}</td>
-                                <td>${item.fields["System.State"]}</td>
-                                <td>${item.fields["Microsoft.VSTS.Scheduling.StoryPoints"]}</td>
-                            </tr>`
+<!-- Third Table-->
+<div id="gap-activation" class="col-sm-9 offset-3">
+    <div class="dashboard-cards">
+        <h2>Gap</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>ADO</th>
+            <th>Developer</th>
+            <th>Created Date</th>
+            <th>Activated Date</th>
+            <th>Gap</th>
+        </tr>
+        <tbody id="tableGap">
+    
+        </tbody>
+    </table>
+    </div>
+    </div>
 
-                    table.innerHTML += row;
-
-                    console.log(item.id);
-                    console.log(item.fields["Custom.Developer"].displayName);
-                    console.log(item.fields["Custom.EstimatedEffortHours"]);
-                    let newEstimatedEffortHours = item.fields["Custom.EstimatedEffortHours"];
-                    console.log(item.fields["Custom.ActualEffortHours"]);
-                    let newActualEffortHours = item.fields["Custom.ActualEffortHours"];
-                    
-                    let differenceInEffort = newActualEffortHours - newEstimatedEffortHours;
-                    if (differenceInEffort > 0){
-                        console.log('Exceeded by', differenceInEffort, 'hours');}
-                    else {
-                        console.log('Finished early by', differenceInEffort, 'hours');
-                    }
-
-                    let resultCreatedDate = item.fields["System.CreatedDate"];
-                    let newCreatedDate = new Date(resultCreatedDate);
-                    console.log(newCreatedDate);
-
-                    let resultActivatedDate = item.fields["Custom.ActivatedDateV2"];
-                    let newActivatedDate = new Date(resultActivatedDate);
-                    console.log(newActivatedDate);
-
-                    let timeGap = newActivatedDate - newCreatedDate;
-                    if (timeGap > 60e3) console.log(
-                        Math.floor(timeGap / 60e3), 'minutes of gap'
-                    );
-                    else console.log(
-                        Math.floor(timeGap/ 1e3), 'seconds of gap'
-                    );
-            }   
-        });
-    });
-</script>
+</div>
+</div>
+</div>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <script src="kanban-report.js"></script>
 </body>
 </html>
