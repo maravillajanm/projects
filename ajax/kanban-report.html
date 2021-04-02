@@ -6,74 +6,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="kanban-report.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="kanban-report.css">
+    <title>Kanban Report</title>
 </head>
 <body>
 <div class="container-bg">
 <div class="container" id="dashboard-container">
     <div class="row">
-        <div class='col-sm-3'>
-        <div id="dashboardPane">
-            <button>Assigned ADOs</button>
-            <button>Estimate vs Actual</button>
-            <button>Gap</button>
-        </div>
-    </div>
     <div class="col-sm-9">
 <div class="dashboard-cards">
+    <h1>Kanban Report</h1>
     <form>
-        <p>Please input ADOs separated by comma. Ensure no spaces.</p>
+        <p>Please input ADOs separated by comma and ensure no spaces. (Example:60439,60437,51603)</p>
         <input type="text" id="adoNumbers">
         <button type="button" id="generate" onclick="">
-            Generate
+            <span class="" role="status"></span> Generate
+        </button>
+        <button type="button" id="analyze-data" onclick="">
+            <span class="" role="status"></span> Analyze Data
         </button>
     </form>
 </div>
 </div>
-<!-- First Table -->
-<div id="assigned-ados" class="col-sm-9 offset-3">
-    <div class="dashboard-cards">
-    <h2>Assigned ADOs</h2>
-<table class="table table-striped">
-    <tr>
-        <th>ADO</th>
-        <th>Developer</th>
-        <th>Request Type</th>
-        <th>State</th>
-        <th>Story Points</th>
-    </tr>
-    <tbody id="tableAssignedADOs">
-
-    </tbody>
-</table>
-</div>
 </div>
 
-<!-- Second Table-->
-<div id="estimates-actuals" class="col-sm-9 offset-3">
+<!--Developers Details-->
+<div class="row">
+    <div class="col-sm-12">
 <div class="dashboard-cards">
-    <h2>Estimates Vs Actuals</h2>
-<table class="table table-striped">
-    <tr>
-        <th>ADO</th>
-        <th>Developer</th>
-        <th>Request Type</th>
-        <th>Estimates</th>
-        <th>Actuals</th>
-        <th>Difference</th>
-    </tr>
-    <tbody id="tableEstimateActuals">
-
-    </tbody>
-</table>
+    <div class="developer-overview"></div>
+</div>
 </div>
 </div>
 
-<!-- Third Table-->
-<div id="gap-activation" class="col-sm-9 offset-3">
+<!-- Circles -->
+<div class="circles">
+</div>
+
+<!--Vertical Tabs-->
+<div class='row'>
+<div class="col-3">
+    <div class="dashboard-cards nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Assigned ADOs</a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Estimate vs Actual</a>
+        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Gap</a>
+        <a class="nav-link" id="v-pills-review-points-tab" data-toggle="pill" href="#v-pills-review-points" role="tab" aria-controls="v-pills-review-points" aria-selected="false">Rework Hours</a>
+    </div>
+</div>
+<div class='col-9'>
+<div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <!-- First Table-->
+        <div id="assigned-ados" class="">
+            <div class="dashboard-cards">
+            <h2>Assigned ADOs</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>ADO</th>
+                <th data-column="developerOne" data-order="desc">Developer</th>
+                <th>Request Type</th>
+                <th data-column="state" data-order="desc">State</th>
+                <th>Story Points</th>
+            </tr>
+            <tbody id="tableAssignedADOs">
+        
+            </tbody>
+        </table>
+        </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <!-- Second Table-->
+<div id="estimates-actuals" class="">
+    <div class="dashboard-cards">
+        <h2>Estimates Vs Actuals</h2>
+        <p>ADOs that exceeded the estimate are highlighted in red.</p>
+    <table class="table table-striped">
+        <tr>
+            <th>ADO</th>
+            <th>Developer</th>
+            <th>Request Type</th>
+            <th>Estimates</th>
+            <th>Actuals</th>
+            <th>Difference</th>
+            <th>Impediments</th>
+        </tr>
+        <tbody id="tableEstimateActuals">
+    
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+        <!-- Third Table-->
+<div id="gap-activation" class="">
     <div class="dashboard-cards">
         <h2>Gap</h2>
+        <p>ADOs with more than 30 minutes of gap are highlighted in red.</p>
     <table class="table table-striped">
         <tr>
             <th>ADO</th>
@@ -88,11 +119,35 @@
     </table>
     </div>
     </div>
+    </div>
+
+    <div class="tab-pane fade" id="v-pills-review-points" role="tabpanel" aria-labelledby="v-pills-review-points-tab">
+        <!-- Fourth Table-->
+<div id="review-points" class="">
+    <div class="dashboard-cards">
+        <h2>Rework Hours</h2>
+        <p>ADOs with more than 30 minutes of rework hours are highlighted in red.</p>
+    <table class="table table-striped">
+        <tr>
+            <th>ADO</th>
+            <th>Developer</th>
+            <th>QA Comments</th>
+            <th>Rework Hours</th>
+        </tr>
+        <tbody id="table-review-points">
+    
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
 
 </div>
 </div>
 </div>
 </div>
+</div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
