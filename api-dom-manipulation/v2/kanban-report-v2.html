@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="kanban-report-v2.css">
+    <title>Kanban Report</title>
+</head>
+<body>
+<div class="container-bg">
+<div class="container" id="dashboard-container">
+    <div class="row">
+    <div class="col-9">
+<div class="dashboard-cards">
+    <h1>Kanban Report</h1>
+    <form>
+        <p>Please input ADOs separated by comma and ensure no spaces. (Example:60439,60437,51603)</p>
+        <!-- 3/31: 62725,62568,62564,62338,62397,62579,62561,62560,62557,56704,56721,56722
+            Impediments: 62568,62338,62397
+            Today: 63177,63140,63141
+        -->
+        <input type="text" id="adoNumbers">
+        <button type="button" id="generate" onclick="">
+            <span class="" role="status"></span> Get Data
+        </button>
+        <button type="button" id="analyze-data" onclick="">
+            <span class="" role="status"></span> Analyze
+        </button>
+    </form>
+</div>
+</div>
+</div>
+
+<!--Developers Details-->
+<div class="row">
+<div class="col-9">
+<div class="dashboard-cards display-overview">
+        <h2>Overview</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Developer</th>
+                <th>Assigned Regular</th>
+                <th>Closed Regular</th>
+                <th>Backlog Regular</th>
+                <th>Admin</th>
+                <th>Story Points</th>
+                <th>Actuals</th>
+            </tr>
+            <tbody id="table-overview">
+        
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+
+<!-- Circles -->
+<div class="circles">
+</div>
+
+<!-- Table Data-->
+<div class='row'>
+<div class='col-12'>
+        <div id="assigned-ados" class="">
+            <div class="dashboard-cards">
+            <h2>ADOs</h2>
+            <p class="analyze-message">Gap & Rework Hours that exceeded more than 30 minutes, and ADOs that exceeded its estimates are highlighted in <span style="color: red">red</span>.</p>
+            <p class="analyze-message">ADOs that are still in progress or was not closed on the same day are highlighted in <span style="color: orange">orange</span>.</p>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th data-column="developerOne" data-order="desc">Assigned To</th>
+                <th>Type</th>
+                <th>Type of Update</th>
+                <th data-column="state" data-order="desc">State</th>
+                <th>Story Points</th>
+                <th>Created Date</th>
+                <th>Activated Date</th>
+                <th>Gap</th>
+                <th>Estimate</th>
+                <th>Actual</th>
+                <th>Difference</th>
+                <th>Sent for Review</th>
+                <th>Rework Hours</th>
+                <th>Closed Date</th>
+            </tr>
+            <tbody id="tableAssignedADOs">
+        
+            </tbody>
+        </table>
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <script src="kanban-report-v2.js"></script>
+</body>
+</html>

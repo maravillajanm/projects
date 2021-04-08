@@ -59,7 +59,7 @@ $("#generate").click(function() {
                         differenceInEffort = 'Within Estimates'
                     }
                     else {
-                        differenceInEffort = 'Exceeded. Why?'
+                        differenceInEffort = 'Exceeded'
                     }
 
                     let row2 = `<tr>
@@ -129,7 +129,7 @@ $("#analyze-data").click(function() {
     // Estimates
     $(".difference-in-effort").each(function() {
         let differenceInEffort = $(this).text()
-        if (differenceInEffort == 'Exceeded. Why?'){
+        if (differenceInEffort == 'Exceeded'){
           $(this).css({"background-color" : "red", "color" : "white"})
         } else {
         $(this).css("background-color", "#24DC34")
@@ -153,16 +153,20 @@ $("#analyze-data").click(function() {
     //Deveoper Details
     $(".developer-name").each(function() {
         let DeveloperName = $(this).text()
-        let sum = 0; 
-
-        if (DeveloperName === "Edgar John Castillo") {
-            $('.story-points').each(function() {
-              var floted = parseFloat($(this).text());
-              if (!isNaN(floted)) sum += floted;
-            });
-          
-            console.log(sum);   
+        
+        if (DeveloperName === "Crystal Yehn Casona") {
+            $(this).parents('tr').find('.story-points').addClass("yen")
         }
+        if (DeveloperName === "Edgar John Castillo") {
+            $(this).parents('tr').find('.story-points').addClass("edgar")
+            
+            // $(this).parents('tr').find('.story-points').each(function() {
+            //   let floated = parseInt($(this).text());
+            //   sum += floated
+            // });
+        }
+        
+        
 
         //     $('.story-points').each(function() {
         //       var floted = parseFloat($(this).text());
@@ -172,4 +176,33 @@ $("#analyze-data").click(function() {
         //     console.log(sum);   
         // }
     })
+
+    // Developer Sum
+
+    let sum1 = 0;
+    let sum2 = 0;
+    let sum3 = 0; 
+    let controlsEdgar = $(".edgar");
+        
+        for (let i = 0; i < controlsEdgar.length; i++) {
+            let ct1 = parseFloat($(controlsEdgar[i]).text());
+            sum1 += ct1;
+        }
+        console.log(sum1);
+
+    let controls2 = $(".yen");
+
+    for (let i = 0; i < controls2.length; i++) {
+            let ct2 = parseFloat($(controls2[i]).text());
+            sum2 += ct2;
+    }
+    console.log(sum2);
+
+    let controls3 = $(".story-points");
+
+    for (let i = 0; i < controls3.length; i++) {
+            let ct3 = parseFloat($(controls3[i]).text());
+            sum3 += ct3;
+    }
+    console.log(sum3);
 })
