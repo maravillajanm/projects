@@ -21,10 +21,10 @@
         <p>Please input ADOs separated by comma or newline. Ensure <strong>no spaces or newline at the start & end</strong>.</p>
         <textarea type="number" id="adoNumbers" placeholder="63664, 63627, 63596" style="min-height: 5em"></textarea>
         <button type="button" id="generate" onclick="">
-            <span class="" role="status"></span> Get Data
+            <i class="" role="status"></i><span> Get Data</span>
         </button>
         <button type="button" id="analyze-data" onclick="">
-            <span class="" role="status"></span> Analyze
+            <i class="" role="status"></i> <span> Analyze</span>
         </button>
     </form>
 </div>
@@ -67,13 +67,15 @@
             <h2>ADOs</h2>
             <p class="analyze-message">Gap & Rework Hours that exceeded more than 30 minutes, and ADOs that exceeded its estimates are highlighted in <span style="color: red">red</span>.</p>
             <p class="analyze-message">ADOs that are still in progress or was not closed on the same day are highlighted in <span style="color: orange">orange</span>.</p>
-        <table class="table table-striped">
+            <div id="get-data-cover" class=''></div>
+            <table id="whole-table" class="table table-striped">
+            <thead>
             <tr>
                 <th>ID</th>
-                <th data-column="developerOne" data-order="desc">Assigned To</th>
+                <th>Assigned To</th>
                 <th>Type</th>
                 <th>Type of Update</th>
-                <th data-column="state" data-order="desc">State</th>
+                <th>State</th>
                 <th>Story Points</th>
                 <th>Created Date</th>
                 <th>Activated Date</th>
@@ -85,6 +87,7 @@
                 <th>Rework Hours</th>
                 <th>Closed Date</th>
             </tr>
+        </thead>
             <tbody id="tableAssignedADOs">
         
             </tbody>
@@ -99,7 +102,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="kanban-report-v3.js"></script>
     <footer class="page-footer font-small blue">
-        <div class="footer-copyright text-center py-3">© 2021 Copyright. For Internal Use Only. Product Owner and Developer: Jan Maravilla. JavaScript Consultant: JP Ligutan
+        <div class="footer-copyright text-center py-3">© 2021 Copyright. Product Designer and Developer: Jan Maravilla. JavaScript Consultant: JP Ligutan
         </div> 
       </footer>
 </body>

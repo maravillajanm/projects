@@ -1,7 +1,8 @@
 $("#generate").click(function() {
         $("#assigned-ados").hide();
-        $('#generate span').addClass('spinner-border');
-
+        $('#generate span').text(' Loading');
+        $('#generate i').addClass('spinner-border');
+        
         // Insert Personal Access Token below. Should not be shared to others. Expires depending on the months you've selected.
         const accessToken = "xu3ectrfjj7noibyk35a7epsueo77mzs6kjnhrpaqf3htw35ndeq"
 
@@ -17,7 +18,8 @@ $("#generate").click(function() {
             },     
             error: function(xhr, status, error) {
                 alert("Please input ADOs separated by comma or newline. Ensure no spaces or newline at the start & end.")
-                $('#generate span').removeClass('spinner-border');
+                $('#generate span').text(' Get Data');
+                $('#generate i').removeClass('spinner-border')
             }   
         }).done(function buildTable (results) {
             let table1 = document.getElementById('tableAssignedADOs')
@@ -95,7 +97,9 @@ $("#generate").click(function() {
             }})
 
             $("#assigned-ados").fadeIn();
-            $('#generate span').removeClass('spinner-border');
+            $('#generate span').text(' Get Data');
+            $('#generate i').removeClass('spinner-border')
+            $('#get-data-cover').addClass('blur-table');
         });
     $(".display-overview, .analyze-message").hide();
 });
@@ -103,7 +107,8 @@ $("#generate").click(function() {
 
 // Analyze Data
 $("#analyze-data").click(function() {
-    $("#analyze-data span").addClass("spinner-border");
+    $('#analyze-data span').text(' Loading');
+    $('#analyze-data i').addClass('spinner-border');
     $("#table-overview").empty();
     // State
     $(".ado-state").each(function() {
@@ -261,7 +266,9 @@ $("#analyze-data").click(function() {
         <th>${totalActualHoursEffort}</th>
         </tr>`);
 
-    $("#analyze-data span").removeClass("spinner-border");
+        $('#analyze-data span').text(' Analyze');
+        $('#analyze-data i').removeClass('spinner-border');
+        $('#get-data-cover').removeClass('blur-table');
     
     // Analyze Message
     if(controlsSPDeveloper.length > 0){
