@@ -99,7 +99,7 @@ $("#generate").click(function() {
             $("#assigned-ados").fadeIn();
             $('#generate span').text(' Get Data');
             $('#generate i').removeClass('spinner-border')
-            $('#get-data-cover').addClass('blur-table');
+            $('#get-data-cover').fadeIn();
         });
     $(".display-overview, .analyze-message").hide();
 });
@@ -268,7 +268,7 @@ $("#analyze-data").click(function() {
 
         $('#analyze-data span').text(' Analyze');
         $('#analyze-data i').removeClass('spinner-border');
-        $('#get-data-cover').removeClass('blur-table');
+        $('#get-data-cover').hide();
     
     // Analyze Message
     if(controlsSPDeveloper.length > 0){
