@@ -1,0 +1,168 @@
+body {
+    background-image: url("assets/gradient-background.png");
+    height: 100%;
+    background-size: cover;
+    font-family: 'Roboto Slab', sans-serif;
+}
+
+h1, h2{
+    font-size: 2em;
+}
+
+p {
+    font-size: 12px;
+} 
+
+#dashboard-container {
+    background: rgba(255,255,255,0.5);
+    min-height: 250px;
+    border-radius: 15px;
+    width: auto;
+    margin-top: 2em;
+    padding: 1em;
+}
+
+.dashboard-cards {
+    height: auto;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 2em;
+    margin-bottom: 1em;
+}
+
+#dashboardPane {
+    background: rgba(255,255,255,0.6);
+    height: auto;
+    margin: 0px;
+    padding: 40px;
+    border-radius: 15px;
+    }
+
+    @media screen and (max-width: 1000px){
+        body {
+            display: none;
+        }
+    }
+    #dashboardPane button{
+        display: block;
+        margin-bottom: 30px;
+    }
+    #dashboardPane button.active, button:hover {
+        background-color: #ffb60b;
+    }
+
+   #dashboard-container .col-sm-9 {
+       margin-bottom: 2em;
+   }
+
+
+#adoNumbers {
+    width: 100%;
+    height: 3em;
+    margin-bottom: 1em;
+}
+
+.circles {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    z-index: 1;
+    right: -125px;
+    top: 50px;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  #v-pills-tab a {
+      color: #000;
+  }
+  #v-pills-tab a.active, button:hover {
+    color: #fff;
+    background-color: #f18a3a;
+}
+
+table tbody:first-child tr {
+    background-color:rgba(250,250,250,0.4)!important;
+}
+
+.spinner-border {
+    height: 1rem;
+    width: 1rem;
+}
+
+table img {
+    width: 100%!important;
+}
+
+.table td {
+    font-size: 11px;
+}
+
+.table th {
+    font-size: 12px;
+}
+
+@media (min-width: 1200px) {
+.container {
+    max-width: 1250px;
+}
+}
+
+#assigned-ados .dashboard-cards {
+    padding: 1em;
+    margin: 0 1em;
+    background: rgba(255,255,255,0.8);
+}
+
+.analyze-message, .display-overview, #assigned-ados {
+    display: none;
+}
+
+th, td, tr {
+    border: 2px solid black;
+    border-width: 2px;
+}
+.table thead th {
+    border-bottom: 2px solid black;
+}
+
+.footer-copyright {
+    color: white;
+    font-size: 10px;
+}
+
+button#generate, button#analyze-data {
+    color: white;
+    background-color: orange;
+    border: 3px solid white;
+    border-radius: 5px;
+    padding: 5px 25px;
+}
+
+button#generate:hover, button#analyze-data:hover {
+    color: black;
+    border: 3px solid black;
+}
+
+.blur-table {
+    display: block;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(2px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+}
+
+#get-data-cover p {
+    text-align: center;
+    padding-top: 9em;
+    font-size: 1em;
+    font-weight: 900;
+}
