@@ -102,7 +102,7 @@ $("#generate").click(function() {
             $('#generate i').removeClass('spinner-border')
             $('#get-data-cover').fadeIn();
         });
-    $(".display-overview, .analyze-message").hide();
+    $(".display-overview, .analyze-message, .take-notes").hide();
 });
 
 
@@ -147,7 +147,7 @@ $("#analyze-data").click(function() {
         if (differenceInEffort == 'Exceeded'){
           $(this).css({"background-color" : "red", "color" : "white"})
         } 
-        else if (differenceInEffort == 'For Monitoring'){
+        else if (differenceInEffort == 'Still in Progress'){
             $(this).css("background-color", "orange")
         } 
         else {
@@ -178,6 +178,8 @@ $("#analyze-data").click(function() {
     let totalClosedRegTixNextDay = 0;
     let totalRegTixInProgress = 0;
     let totalCentralTracker = 0;
+    let totalBR = 0;
+    let totalCombinedClosedTix = 0;
     
     $(".tr-parent").each(function(){
         controlsSPDeveloper.push($(this).attr("data-dev-name"));
@@ -199,11 +201,13 @@ $("#analyze-data").click(function() {
         let sumReworkHoursEffort = 0;
         let sumActualHoursEffort = 0;
         let sumRegularTix = 0;
+        let sumBR = 0;
         let sumCentralTracker = 0;
         let sumAdminTix = 0;
         let sumClosedRegTixSameDay = 0;
         let sumClosedRegTixNextDay = 0;
         let sumRegTixInProgress = 0;
+        let sumCombinedClosedTix = 0;
 
             
             for (let i = 0; i < getRequestType.length; i++) {
@@ -217,15 +221,18 @@ $("#analyze-data").click(function() {
                 else if (requestType === "Page Maintenance") {  
                     sumCentralTracker ++;
                 }
+                else if (requestType === "BR (For SME's only)") {  
+                    sumBR ++;
+                }
                 else {
                     sumRegularTix ++;
                 }
                 
-                if (requestType !== "ADMIN" && requestType !== "Page Maintenance" && requestState === "Closed" && backlogIdentifier < 720) {
+                if (requestType !== "ADMIN" && requestType !== "Page Maintenance" && requestType !== "BR (For SME's only)" && requestState === "Closed" && backlogIdentifier < 720) {
                     sumClosedRegTixSameDay ++;
-                } else if (requestType !== "ADMIN" && requestType !== "Page Maintenance" && requestState === "Closed" && backlogIdentifier > 720) {
+                } else if (requestType !== "ADMIN" && requestType !== "Page Maintenance" && requestType !== "BR (For SME's only)" && requestState === "Closed" && backlogIdentifier > 720) {
                     sumClosedRegTixNextDay ++
-                } else if (requestType !== "ADMIN" && requestType !== "Page Maintenance" && requestState !== "Closed"){
+                } else if (requestType !== "ADMIN" && requestType !== "Page Maintenance" && requestType !== "BR (For SME's only)" && requestState !== "Closed"){
                     sumRegTixInProgress ++
                 }
             }
@@ -243,16 +250,19 @@ $("#analyze-data").click(function() {
                 sumReworkHoursEffort = Math.round(sumReworkHoursEffort*100)/100
             }
             let sumCombinedActualRework = sumActualHoursEffort + sumReworkHoursEffort;
+            sumCombinedClosedTix = sumClosedRegTixNextDay + sumClosedRegTixSameDay;
 
             // Write Table Row per Dev
             $("#table-overview").append(`<tr id="row_total_`+[i+1]+`" data-dev-total="`+cleanUpControlsDev[i]+`">
                 <th>${cleanUpControlsDev[i]}</th>
                 <th>${sumRegularTix}</th>
-                <th>${sumClosedRegTixSameDay}</th>
                 <th>${sumRegTixInProgress}</th>
+                <th>${sumClosedRegTixSameDay}</th>
                 <th>${sumClosedRegTixNextDay}</th>
+                <th>${sumCombinedClosedTix}</th>
                 <th>${sumCentralTracker}</th>
                 <th>${sumAdminTix}</th>
+                <th>${sumBR}</th>
                 <th>${sumStoryPoints}</th>
                 <th>${sumCombinedActualRework}</th>
                 </tr>
@@ -270,17 +280,21 @@ $("#analyze-data").click(function() {
             totalClosedRegTixNextDay += sumClosedRegTixNextDay;
             totalRegTixInProgress += sumRegTixInProgress;
             totalCentralTracker += sumCentralTracker;
+            totalBR += sumBR;
+            totalCombinedClosedTix = totalClosedRegTixNextDay + totalClosedRegTixSameDay;
     };
     
     //Total Values Table Row
     $("#table-overview").append(`<tr>
         <th>Total</th>
         <th>${totalRegularTix}</th>
-        <th>${totalClosedRegTixSameDay}</th>
         <th>${totalRegTixInProgress}</th>
+        <th>${totalClosedRegTixSameDay}</th>
         <th>${totalClosedRegTixNextDay}</th>
+        <th>${totalCombinedClosedTix}</th>
         <th>${totalCentralTracker}</th>
         <th>${totalAdminTix}</th>
+        <th>${totalBR}</th>
         <th>${totalStoryPoints}</th>
         <th>${totalCombinedActualRework}</th>
         </tr>`);
@@ -291,30 +305,6 @@ $("#analyze-data").click(function() {
     
     // Analyze Message
     if(controlsSPDeveloper.length > 0){
-        $(".display-overview, .analyze-message").fadeIn();
+        $(".display-overview, .analyze-message, .take-notes").fadeIn();
     }
 })
-
-// Title
-// ID
-// Work Item Type
-// State
-// Area Path
-// Developer
-// Type
-
-// ITM12282538 - PDF Zoom Fix
-// 66789
-// User Story
-// New
-// IMBA\SME
-// Julius Ryan Topacio <julius.r.p.topacio@accenture.com>
-// BR (For SME's only)
-
-// FLM - RITM11890991
-// 66785
-// User Story
-// New
-// IMBA\SME
-// Jennifer Degala <jennifer.b.degala@accenture.com>
-// BR (For SME's only)

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="kanban-report-v5.css">
+    <title>Kanban Report</title>
+</head>
+<body>
+<div class="container-bg">
+<div class="container" id="dashboard-container">
+    <div class="row">
+    <div class="col-9">
+<div class="dashboard-cards">
+    <h1>Kanban Report</h1>
+    <form>
+        <p>Please input ADOs with <strong>same Created Date</strong>. Not applicable for items that <strong>doesn't have Assigned To value</strong>.<br>
+            Table sorting is not yet available, for the meantime, you may <strong>sort the Developer's Name from your Excel extract.</strong></p>
+        <textarea type="number" id="adoNumbers" style="min-height: 5em"></textarea>
+        <button type="button" id="generate" onclick="">
+            <i class="" role="status"></i><span> Get Data</span>
+        </button>
+        <button type="button" id="analyze-data" onclick="">
+            <i class="" role="status"></i> <span> Analyze</span>
+        </button>
+    </form>
+</div>
+</div>
+</div>
+
+<!--Developers Details-->
+<div class="row">
+<div class="col-9">
+<div class="dashboard-cards display-overview">
+        <h2>Overview</h2>
+        <table class="table table-striped">
+            <tr>
+                <th></th>
+                <th colspan="5" style="text-align: center;">Regular Tickets</th>
+                <th colspan="5" style="text-align: center;">Others</th>
+            </tr>
+            <tr>
+                <th>Developer</th>
+                <th>Assigned</th>
+                <th>Still In Progress</th>
+                <th>Closed Same Day</th>
+                <th>Closed Next Day</th>
+                <th>Total Closed</th>
+                <th>Central<br>Tracker</th>
+                <th>Admin</th>
+                <th>Build <br>Request</th>
+                <th>Story Points</th>
+                <th>Combined Actual, <br>Rework & BR Hours</th>
+            </tr>
+            <tbody id="table-overview">
+        
+            </tbody>
+            
+        </table>
+    </div>
+    </div>
+    <div class="col-3 take-notes">
+        <textarea name="" id="" cols="30" rows="13" placeholder="Insert Notes Here"></textarea>
+    </div>
+</div>
+
+<!-- Circle -->
+<div class="circles">
+</div>
+
+<!-- Table Data-->
+<div class='row'>
+<div class='col-12'>
+        <div id="assigned-ados" class="">
+            <div class="dashboard-cards">
+            <h2>ADOs</h2>
+            <p class="analyze-message">Gap & Rework Hours that exceeded more than 30 minutes, and ADOs that exceeded its estimates are highlighted in <span style="color: red">red</span>.</p>
+            <p class="analyze-message">ADOs that are still in progress or was not closed on the same day are highlighted in <span style="color: orange">orange</span>.</p>
+            <div id="get-data-cover" class='blur-table'><p>Click ANALYZE to get an Overview and easily identify ADOs with challenges.</p.></div>
+            <table id="whole-table" class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>RITM</th>
+                <th>Assigned To</th>
+                <th>Type</th>
+                <th>Type of Update</th>
+                <th>State</th>
+                <th>Story Points</th>
+                <th>Created Date</th>
+                <th>Activated Date</th>
+                <th>Gap</th>
+                <th>Estimate</th>
+                <th>Actual</th>
+                <th>Difference</th>
+                <th>Sent for Review</th>
+                <th>Rework Hours</th>
+                <th>Closed Date</th>
+            </tr>
+        </thead>
+            <tbody id="tableAssignedADOs">
+        
+            </tbody>
+        </table>
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="kanban-report-v5.js"></script>
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3">© 2021 Copyright. Product Designer and Developer: Jan Maravilla. JavaScript Consultant: JP Ligutan
+        </div> 
+      </footer>
+</body>
+</html>
