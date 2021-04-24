@@ -1,20 +1,22 @@
 body {
-    background-image: url("assets/gradient-background.png");
+    /*background-image: url("assets/gradient-background.png");*/
+    background: linear-gradient(to right, #3494e6, #ec6ead);
     height: 100%;
     background-size: cover;
     font-family: 'Roboto Slab', sans-serif;
 }
 
-h1, h2{
+h1,
+h2 {
     font-size: 2em;
 }
 
 p {
     font-size: 12px;
-} 
+}
 
 #dashboard-container {
-    background: rgba(255,255,255,0.5);
+    background: rgba(255, 255, 255, 0.5);
     min-height: 250px;
     border-radius: 15px;
     width: auto;
@@ -24,39 +26,43 @@ p {
 
 .dashboard-cards {
     height: auto;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
     border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 2em;
     margin-bottom: 1em;
+    position: relative;
+    z-index: 8;
 }
 
 #dashboardPane {
-    background: rgba(255,255,255,0.6);
+    background: rgba(255, 255, 255, 0.6);
     height: auto;
     margin: 0px;
     padding: 40px;
     border-radius: 15px;
-    }
+}
 
-    @media screen and (max-width: 1000px){
-        body {
-            display: none;
-        }
+@media screen and (max-width: 1000px) {
+    body {
+        display: none;
     }
-    #dashboardPane button{
-        display: block;
-        margin-bottom: 30px;
-    }
-    #dashboardPane button.active, button:hover {
-        background-color: #ffb60b;
-    }
+}
 
-   #dashboard-container .col-sm-9 {
-       margin-bottom: 2em;
-   }
+#dashboardPane button {
+    display: block;
+    margin-bottom: 30px;
+}
 
+#dashboardPane button.active,
+button:hover {
+    background-color: #ffb60b;
+}
+
+#dashboard-container .col-sm-9 {
+    margin-bottom: 2em;
+}
 
 #adoNumbers {
     width: 100%;
@@ -68,25 +74,27 @@ p {
     height: 250px;
     width: 250px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     right: -125px;
     top: 50px;
     transform: translateX(-50%) translateY(-50%);
-  }
+}
 
-  #v-pills-tab a {
-      color: #000;
-  }
-  #v-pills-tab a.active, button:hover {
+#v-pills-tab a {
+    color: #000;
+}
+
+#v-pills-tab a.active,
+button:hover {
     color: #fff;
     background-color: #f18a3a;
 }
 
 table tbody:first-child tr {
-    background-color:rgba(250,250,250,0.4)!important;
+    background-color: rgba(250, 250, 250, 0.4)!important;
 }
 
 .spinner-border {
@@ -107,26 +115,34 @@ table img {
 }
 
 @media (min-width: 1200px) {
-.container {
-    max-width: 1250px;
-}
+    .container {
+        max-width: 1250px;
+    }
 }
 
 #assigned-ados .dashboard-cards {
     padding: 1em;
-    margin: 0em;
-    background: rgba(255,255,255,0.8);
+    margin: 1em;
+    background: rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 4;
 }
 
-.analyze-message, .display-overview, #assigned-ados, .take-notes {
+.analyze-message,
+.display-overview,
+#assigned-ados {
     display: none;
 }
 
-th, td, tr {
+th,
+td,
+tr {
     border: 2px solid black;
     border-width: 2px;
 }
-table th, table td {
+
+table th,
+table td {
     padding: 0.5rem!important;
 }
 
@@ -139,7 +155,8 @@ table th, table td {
     font-size: 10px;
 }
 
-button#generate, button#analyze-data {
+button#generate,
+button#analyze-data {
     color: white;
     background-color: orange;
     border: 3px solid white;
@@ -147,14 +164,15 @@ button#generate, button#analyze-data {
     padding: 5px 25px;
 }
 
-button#generate:hover, button#analyze-data:hover {
+button#generate:hover,
+button#analyze-data:hover {
     color: black;
     border: 3px solid black;
 }
 
 .blur-table {
     display: block;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(2px);
     height: 100%;
     width: 100%;
@@ -173,8 +191,59 @@ button#generate:hover, button#analyze-data:hover {
 
 .take-notes textarea {
     width: 100%;
-    border-radius: 10px;
-    margin-top: 5em;
     font-family: 'Calibri';
     font-size: 15px;
+}
+
+#take-notes-container {
+    width: 100%;
+    position: inherit;
+    padding: 20px;
+}
+
+#drawer {
+    position: fixed;
+    right: 0;
+    top: 175px;
+    height: 100%;
+    overflow-x: hidden;
+    /* Needed for initial hidden state */
+}
+
+#drawer-handle:hover {
+    content: "<";
+    float: left;
+    display: block;
+}
+
+#drawer>div {
+    height: auto;
+    float: left;
+}
+
+#drawer-handle {
+    width: 2.5em;
+    color: white;
+    background-color: orange;
+    border: 3px solid white;
+    border-radius: 5px;
+    padding: 5px 5px;
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    text-align: center;
+}
+
+#drawer-handle:hover {
+    color: black;
+    border: 3px solid black;
+}
+
+#drawer-content {
+    width: 280px;
+    margin-right: -280px;
+    /* -width */
+}
+
+#drawer-content>p {
+    padding: 10px;
 }
