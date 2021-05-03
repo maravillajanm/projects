@@ -1,0 +1,20 @@
+[
+    {
+        "img" : "../assets/images/trip-1",
+        "alt" : "Trip 1",
+        "name" : "Trip 1",
+        "button" : "View Destination"
+    },
+    {
+        "img" : "../assets/images/trip-2",
+        "alt" : "Trip 2",
+        "name" : "Trip 2",
+        "button" : "View Destination"
+    },
+    {
+        "img" : "../assets/images/trip-3",
+        "alt" : "Trip 3",
+        "name" : "Trip 3",
+        "button" : "View Destination"
+    }
+]
