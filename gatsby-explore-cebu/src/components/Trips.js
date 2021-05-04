@@ -1,14 +1,16 @@
 import React from "react"
 import styled from 'styled-components'
+import FirstImage from "../assets/images/trip-1.jpg"
 
+console.log(FirstImage)
 
 const Trips = () =>{
-
-
     return (
         <PlaceContainer>
             <PlaceHeading>Heading</PlaceHeading>
-            <PlaceWrapper>Wrapper</PlaceWrapper>
+            <PlaceWrapper>
+              <img scr={FirstImage} alt="Cebu" />
+              </PlaceWrapper>
         </PlaceContainer>
     )
 }
@@ -28,5 +30,8 @@ margin-bottom: 5rem;
 color: #000;
 `
 
-const PlaceWrapper = styled.div``
+const PlaceWrapper = styled.div`
+height: auto;
+width: 100%;
+`
 
