@@ -4,7 +4,7 @@ $("#generate").click(function() {
     $('#generate i').addClass('spinner-border');
 
     // Insert Personal Access Token below. Should not be shared to others. Expires depending on the months you've selected.
-    const accessToken = "mznwewqtdhrx7najwjlgcvv3mg6luy6ae5zmrbxv4hw6xxgmcisq"
+    const accessToken = "sp4sqxqyt4sztiv3jmmuniqlr3lzn2r7b2kty5nc75qnbvd2rvpa"
 
 
     let adoNumbersCleanUp = document.getElementById("adoNumbers").value;
