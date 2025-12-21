@@ -1,7 +1,7 @@
-import SignUpPage from "./signup/signup-page";
+import DashboardPage from "./pages/dashboard";
 
 export default function Home() {
   return (
-    <SignUpPage />
+    <DashboardPage />
   );
 }
