@@ -1,0 +1,32 @@
+{
+  "gallery": [
+    {
+      "thumb": "/images/gallery1.jpg",
+      "large": "/images/gallery1-large.jpg",
+      "alt": "Mountain View"
+    }
+  ],
+  "cards": [
+    {
+      "title": "Card Title 1",
+      "description": "Supporting description",
+      "link": "#",
+      "linkText": "Explore",
+      "image": "/images/card.png"
+    },
+    {
+      "title": "Card Title 2",
+      "description": "Supporting description",
+      "link": "#",
+      "linkText": "Read More",
+      "image": "/images/card.png"
+    },
+    {
+      "title": "Card Title 3",
+      "description": "Supporting description",
+      "link": "#",
+      "linkText": "Learn More",
+      "image": "/images/card.png"
+    }
+  ]
+}

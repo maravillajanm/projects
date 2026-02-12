@@ -1,0 +1,13 @@
+section {
+  background-color: var(--background-color);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}

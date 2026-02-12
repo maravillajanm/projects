@@ -1,0 +1,22 @@
+.gallery {
+  background-color: var(--background-color);
+  padding: 2rem;
+
+  &__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  &__item {
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}

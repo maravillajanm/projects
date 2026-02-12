@@ -1,0 +1,9 @@
+<section class="gallery">
+  <div class="gallery__grid">
+    {{#each this}}
+      <button class="gallery__item" data-large="{{large}}">
+        <img src="{{thumb}}" alt="{{alt}}" loading="lazy">
+      </button>
+    {{/each}}
+  </div>
+</section>
