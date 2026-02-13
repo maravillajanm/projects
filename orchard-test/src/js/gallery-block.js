@@ -15,7 +15,7 @@ const initGalleryModal = () => {
       const content = modal.querySelector('.js-modal-content');
 
       content.innerHTML = `
-        <img src="${imageSrc}" alt="${imageAlt}">
+        <img src="/projects/orchard/${imageSrc}" alt="${imageAlt}">
       `;
 
       modal.classList.add('is-active');

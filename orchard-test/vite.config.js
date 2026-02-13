@@ -7,6 +7,7 @@ const data = JSON.parse(
 )
 
 export default defineConfig({
+  base: '/projects/orchard',
   plugins: [
     handlebars({
       context: data,
