@@ -1,4 +1,6 @@
 import '../scss/main.scss'
 
-import './gallery'
-import './cards'
+document.addEventListener('DOMContentLoaded', () => {
+  import('./gallery-block');
+  import('./cards-block');
+});

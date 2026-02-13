@@ -1,0 +1,32 @@
+<div class="gallery">
+
+    <div class="gallery__right-content">
+        <div class="gallery__full-image">
+            <button class="gallery__trigger js-modal-trigger" type="button" data-modal="gallery-modal"
+                data-image="{{fullImage.src}}" data-alt="{{fullImage.alt}}">
+                {{> basics/image fullImage }}
+            </button>
+        </div>
+    </div>
+
+    <div class="gallery__left-content">
+
+        <div class="gallery__top-image">
+            <button class="gallery__trigger js-modal-trigger" type="button" data-modal="gallery-modal"
+                data-image="{{topImage.src}}" data-alt="{{topImage.alt}}">
+                {{> basics/image topImage }}
+            </button>
+        </div>
+
+        <div class="gallery__bottom-image">
+            <button class="gallery__trigger js-modal-trigger" type="button" data-modal="gallery-modal"
+                data-image="{{bottomImage.src}}" data-alt="{{bottomImage.alt}}">
+                {{> basics/image bottomImage }}
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+{{> basics/modal id="gallery-modal" content="" }}

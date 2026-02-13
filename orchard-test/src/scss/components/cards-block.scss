@@ -1,0 +1,26 @@
+.cards-block {
+
+    &__cards-container {
+        display: grid;
+        gap: 10px;
+
+        @media screen and (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (min-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__title {
+        line-height: 1.1;
+        letter-spacing: 1.5px;
+        font-weight: 300;
+        border-bottom: solid 1px var(--color-white);
+        padding-bottom: 30px;
+        width: fit-content;
+        margin: 0 auto 30px;
+        text-align: left;
+    }
+}

@@ -1,0 +1,12 @@
+<div class="cards-block">
+	<h2 class="cards-block__title">{{title}}</h2>
+	<div class="cards-block__cards-container">
+		{{#each cards}}
+		<article class="card">
+  			<a class="js-card-link" href="{{link}}" aria-label="Read more about {{title}}">
+				{{> basics/card}}
+			</a>
+		</article>
+		{{/each}}
+	</div>
+</div>

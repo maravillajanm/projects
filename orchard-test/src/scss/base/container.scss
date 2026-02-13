@@ -1,13 +1,18 @@
+body {
+	background-color: var(--background-color);
+}
+
 section {
-  background-color: var(--background-color);
+	margin-bottom: 100px;
+	padding: 50px 0;
 }
 
 .container {
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 16px;
-  padding-right: 16px;
-  box-sizing: border-box;
+  	width: 100%;
+  	max-width: 1200px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	padding-left: 16px;
+  	padding-right: 16px;
+  	box-sizing: border-box;
 }
