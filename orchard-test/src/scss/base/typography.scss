@@ -1,0 +1,45 @@
+body {
+    font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-white);
+    font-family: var(--font-base);
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+h1 { 
+    font-size: 2rem;
+}
+
+h2 { 
+    font-size: 1.875rem;
+}
+h3 {
+    font-size: 1.7rem;
+}
+h4 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1.3rem;
+    margin-bottom: var(--space-sm);
+    color: var(--color-white);
+}
+
+a,
+button {
+    display: inline-block;
+
+    &:focus-visible {
+        outline: 3px solid #ff3b3b;
+        outline-offset: 3px;
+    }
+}

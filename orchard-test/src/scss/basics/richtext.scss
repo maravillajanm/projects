@@ -1,0 +1,23 @@
+.richtext {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        margin-bottom: 30px;
+    }
+
+    .label {
+        font-size: 15px;
+        font-weight: bold;
+        color: var(--color-secondary);
+        text-transform: uppercase;
+    }
+
+    .highlight {
+        line-height: 1.43;
+        font-weight: bold;
+    }
+}

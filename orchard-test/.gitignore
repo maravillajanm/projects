@@ -1,0 +1,12 @@
+# Node modules / dependencies
+node_modules/
+
+# Build / compiled files
+dist/
+build/
+public/build/
+
+# Environment files
+.env
+.env.local
+.env.*.local

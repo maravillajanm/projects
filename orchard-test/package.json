@@ -1,0 +1,14 @@
+{
+  "name": "orchard-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0",
+    "vite": "^5.0.0",
+    "vite-plugin-handlebars": "^2.0.0"
+  }
+}

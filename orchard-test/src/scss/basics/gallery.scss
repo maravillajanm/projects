@@ -1,0 +1,21 @@
+.gallery {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+	}
+
+	&__left-content {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	&__trigger {
+		border: none;
+		padding: 0;
+		width: 100%;
+	}
+}

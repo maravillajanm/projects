@@ -1,0 +1,43 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+  }
+
+  &__container {
+    position: relative;
+    max-width: 900px;
+    margin: 5vh auto;
+    background: #000;
+    padding: 1rem;
+    z-index: 2;
+  }
+
+  &__content img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &__close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}

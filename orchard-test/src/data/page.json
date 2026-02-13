@@ -1,0 +1,53 @@
+{
+  "galleryBlock": {
+    "title": "WHAT DOES COOKING MEAN?",
+    "text": "<p> Is it simply applying heat to a food product? A way of making certain food safe to eat? Or a way to create flavour and make food more appealing? This is just part of what Hervé This, the father of molecular gastronomy, has dedicated his life to finding out. </p><p class='label'>The perfect egg</p><p class='highlight'> Keep water between 67 and 68°C for a flavourful, tender yolk </p>",
+    "fullImage": {
+      "src": "/images/cooking.png",
+      "altText": "White"
+    },
+    "topImage": {
+      "src": "/images/prep.png",
+      "altText": "White"
+    },
+    "bottomImage": {
+      "src": "/images/eggs.png",
+      "altText": "White"
+    }
+  },
+  "cardsBlock": {
+    "title": "Taste the colours",
+    "cards": [
+      {
+        "title": "Red",
+        "description": "Fresh, zingy green colours are reminiscent of unripe fruit, promising sour or acid flavours",
+        "link": "#",
+        "linkText": "Explore",
+        "image": {
+          "src": "/images/card-white.png",
+          "altText": "White"
+        }
+      },
+      {
+        "title": "Green",
+        "description": "Fresh, zingy green colours are reminiscent of unripe fruit, promising sour or acid flavours",
+        "link": "#",
+        "linkText": "Read More",
+        "image": {
+          "src": "/images/card-green.png",
+          "altText": "Green"
+        }
+      },
+      {
+        "title": "White",
+        "description": "White foods evoke memories of salt and salty flavours, driving the expectation of a savoury treat.",
+        "link": "#",
+        "linkText": "Learn More",
+        "image": {
+          "src": "/images/card-white.png",
+          "altText": "White"
+        }
+      }
+    ]
+  }
+}
