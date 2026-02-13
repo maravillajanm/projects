@@ -21,13 +21,16 @@
     margin: 5vh auto;
     background: #000;
     padding: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 2;
   }
 
   &__content img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     display: block;
+    margin: 0 auto;
   }
 
   &__close {
