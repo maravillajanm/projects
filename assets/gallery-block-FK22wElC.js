@@ -1,3 +1,3 @@
 const d=()=>{const t=document.querySelectorAll(".js-modal-trigger");t.length&&(t.forEach(e=>{e.addEventListener("click",()=>{const o=e.dataset.modal,n=e.dataset.image,l=e.dataset.alt||"",c=document.getElementById(o);if(!c)return;const a=c.querySelector(".js-modal-content");a.innerHTML=`
-        <img src="/projects/orchard/${n}" alt="${l}">
+        <img src="/projects/${n}" alt="${l}">
       `,c.classList.add("is-active"),c.setAttribute("aria-hidden","false"),i()})}),r())},r=()=>{document.querySelectorAll(".js-modal-close").forEach(e=>{e.addEventListener("click",()=>{s(e.closest(".js-modal"))})}),document.addEventListener("keydown",e=>{if(e.key==="Escape"){const o=document.querySelector(".js-modal.is-active");o&&s(o)}})},s=t=>{if(!t)return;t.classList.remove("is-active"),t.setAttribute("aria-hidden","true");const e=t.querySelector(".js-modal-content");e&&(e.innerHTML=""),u()},i=()=>{document.body.style.overflow="hidden"},u=()=>{document.body.style.overflow=""};d();
