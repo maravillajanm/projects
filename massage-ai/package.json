@@ -4,7 +4,7 @@
   "description": "AI sales assistant for massage booking funnel",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js",
+    "start": "node api.js && node bot.js",
     "ngrok": "node ngrok-start.js"
   },
   "dependencies": {
